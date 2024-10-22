@@ -1,0 +1,22 @@
+server:
+  port: 8083
+
+spring:
+  datasource:
+    driverClassName: "com.mysql.jdbc.Driver"
+    url: "jdbc:mysql://127.0.0.1:3306/YAHOO_FINANCE"
+    username: "root"
+    password: "admin1234"
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: create
+
+api:
+  jph:
+    domain: "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
+    getcrumb: "https://query1.finance.yahoo.com/v1/test/getcrumb"
+    endpoints:
+      symbols: "/symbols"
+  yahoo:
+    crumbKey: "${yahoo.crumbKey}"
+    
