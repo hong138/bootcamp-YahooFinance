@@ -12,12 +12,11 @@ spring:
     hibernate.ddl-auto: create
 
 api:
-  jph:
-    domain: "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
-    getcrumb: "https://query1.finance.yahoo.com/v1/test/getcrumb"
-    yhCookie: "https://fc.yahoo.com"
-    endpoints:
-      symbols: "/symbols"
+  domain: "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
+  getcrumb: "https://query1.finance.yahoo.com/v1/test/getcrumb"
+  yhCookie: "https://fc.yahoo.com"
+  endpoints:
+    symbols: "/symbols"
   yahoo:
     crumbKey: "${yahoo.crumbKey}"
     

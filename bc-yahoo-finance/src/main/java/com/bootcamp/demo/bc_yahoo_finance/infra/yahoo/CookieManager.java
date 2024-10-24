@@ -34,9 +34,6 @@ public class CookieManager {
       }
       return cookies.get(0).split(";")[0];
     }
-     
-    
-    
 
   // responseEntity.getHeaders()
 

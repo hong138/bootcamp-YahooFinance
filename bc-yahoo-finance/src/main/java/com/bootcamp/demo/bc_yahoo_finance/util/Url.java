@@ -6,6 +6,8 @@ public class Url {
   private Scheme scheme;
   private String domain;
   private String endpoint;
+  
+  private String getCrumb;
 
   private Url(Builder builder) {
     this.scheme = builder.scheme;

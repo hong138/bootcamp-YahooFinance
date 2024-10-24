@@ -10,7 +10,9 @@ import com.bootcamp.demo.bc_yahoo_finance.service.ApiService;
 @Controller
 public class ApiController{  
 
-  private final CookieManager cookieManager;
+  @Autowired
+  private CookieManager cookieManager;
+  
   @Autowired 
   private ApiService apiService;  
 
