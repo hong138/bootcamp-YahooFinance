@@ -13,15 +13,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tstocks")
+@Table(name = "TSTOCK_QUOTE_YAHOO")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StockSymbolEntity implements Serializable {
+public class StockEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
   private String symbol;
+  private Long regularMarketUnix;
+  private double regularMarketChangePercent;
+  private double regularMarketPrice;
+  private double bid;
+  private int bidSize;
+  private double ask;
+  private int askSize;
+
 }

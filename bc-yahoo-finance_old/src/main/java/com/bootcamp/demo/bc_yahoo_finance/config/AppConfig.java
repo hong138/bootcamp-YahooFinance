@@ -10,7 +10,7 @@ import com.bootcamp.demo.bc_yahoo_finance.infra.yahoo.CookieManager;
 public class AppConfig {
 
   @Bean()
-  public RestTemplate restTemplate() {
+  RestTemplate restTemplate() {
     return new RestTemplate();
   }
 

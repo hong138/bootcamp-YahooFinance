@@ -3,20 +3,20 @@ server:
 
 spring:
   datasource:
+    # driverClassName: "org.postgresql.Driver"
+    # url: "jdbc:postgresql://127.0.0.1:5432/YAHOO_FINANCE"
+    # username: "postgres"
+    # password: "admin1234"
     driverClassName: "com.mysql.jdbc.Driver"
-    url: "jdbc:mysql://127.0.0.1:3306/YAHOO_FINANCE"
+    url: "jdbc:mysql://127.0.0.1:3306/BOOTCAMP_2408"
     username: "root"
     password: "admin1234"
   jpa:
-    show-sql: true
+    show-sql: true # this line shows the SQL executed in the terminal
     hibernate.ddl-auto: create
 
+# Custom variables
 api:
-  domain: "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
-  getcrumb: "https://query1.finance.yahoo.com/v1/test/getcrumb"
-  yhCookie: "https://fc.yahoo.com"
-  endpoints:
-    symbols: "/symbols"
-  yahoo:
-    crumbKey: "${yahoo.crumbKey}"
-    
+  yf:
+    domain: "query1.finance.yahoo.com"
+    endpoints: "/v7/finance/quote"

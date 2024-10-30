@@ -1,6 +1,5 @@
-package com.bootcamp.demo.bc_yahoo_finance.entity;
+package bootcamp.demo.bc_yahoo_finance.entity;
 
-import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +18,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StockEntity implements Serializable{
+public class StockEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String symbol;
@@ -30,5 +29,4 @@ public class StockEntity implements Serializable{
   private int bidSize;
   private double ask;
   private int askSize;
-
 }

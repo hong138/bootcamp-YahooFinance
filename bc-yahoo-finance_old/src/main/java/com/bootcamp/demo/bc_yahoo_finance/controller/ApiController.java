@@ -1,13 +1,12 @@
-package com.bootcamp.demo.bc_yahoo_finance.controller.impl;
+package com.bootcamp.demo.bc_yahoo_finance.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.RestController;
 import com.bootcamp.demo.bc_yahoo_finance.infra.yahoo.CookieManager;
 import com.bootcamp.demo.bc_yahoo_finance.service.ApiService;
 
-@Controller
+@RestController
 public class ApiController{  
 
   @Autowired
