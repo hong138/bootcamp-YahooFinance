@@ -10,34 +10,35 @@ import org.springframework.web.client.RestTemplate;
 // get key by cookie string
 @Component
 public class CrumbManager {
-  private static final String CRUMB_URL = "https://query1.finance.yahoo.com/v1/test/getcrumb";
+  private static final String CRUMB_URL =
+      "https://query1.finance.yahoo.com/v1/test/getcrumb";
   private RestTemplate restTemplate;
   private CookieManager cookieManager;
   private String crumb;
 
-  public CrumbManager(RestTemplate restTemplate, CookieManager cookieManager) {
+  public CrumbManager(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
-    this.cookieManager = cookieManager;
+    this.cookieManager = new CookieManager(restTemplate);
   }
 
   public String getCrumb() {
     String cookie = cookieManager.getCookie();
-    System.out.println("Cookie: " + cookie);
-    
-  try {
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("User-Agent", "Mozilla/5.0");
-    headers.add("Cookie", cookie);
-    HttpEntity<String> entity = new HttpEntity<>(headers);
-    ResponseEntity<String> response = this.restTemplate.exchange(CRUMB_URL,
-        HttpMethod.GET, entity, String.class);
-    this.crumb = response.getBody();
-    System.out.println("crumb: " + this.crumb);
-    return this.crumb;
-  } catch (Exception e) {
-    System.out.println("...Cookie...Exception...");
-    System.out.println(e.getMessage());
-    throw new RuntimeException("Get crumb failed...");
+    // System.out.println("Cookie: " + cookie);
+
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.add("User-Agent", "Mozilla/5.0");
+      headers.add("Cookie", cookie);
+      HttpEntity<String> entity = new HttpEntity<>(headers);
+      ResponseEntity<String> response = this.restTemplate.exchange(CRUMB_URL,
+          HttpMethod.GET, entity, String.class);
+      this.crumb = response.getBody();
+      System.out.println("crumb: " + this.crumb);
+      return this.crumb;
+    } catch (Exception e) {
+      System.out.println("...Cookie...Exception...");
+      System.out.println(e.getMessage());
+      throw new RuntimeException("Get crumb failed...");
     }
   }
 }
