@@ -7,16 +7,18 @@ spring:
     # url: "jdbc:postgresql://127.0.0.1:5432/YAHOO_FINANCE"
     # username: "postgres"
     # password: "admin1234"
-    driverClassName: "com.mysql.jdbc.Driver"
-    url: "jdbc:mysql://127.0.0.1:3306/BOOTCAMP_2408"
+    driverClassName: "com.mysql.cj.jdbc.Driver"
+    url: "jdbc:mysql://127.0.0.1:3306/YAHOO_FINANCE"
     username: "root"
     password: "admin1234"
   jpa:
     show-sql: true # this line shows the SQL executed in the terminal
-    hibernate.ddl-auto: create
+    hibernate.ddl-auto: update
+    # Hibernate ddl auto (create, create-drop, validate, update, none)
+    open-in-view: false
 
 # Custom variables
-api:
-  yf:
-    domain: "query1.finance.yahoo.com"
-    endpoints: "/v7/finance/quote"
+# api:
+#   yf:
+#     domain: "query1.finance.yahoo.com"
+#     endpoints: "/v7/finance/quote"

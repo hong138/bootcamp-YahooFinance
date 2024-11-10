@@ -3,12 +3,12 @@ package bootcamp.demo.bc_yahoo_finance.infra.web;
 public class BusinessException extends RuntimeException {
   private int code;
 
-  public BusinessException(ErrorCode errorCode) {
+  public BusinessException(Errorable errorCode) {
     super(errorCode.getMessage());
     this.code = errorCode.getCode();
   }
 
-  public BusinessException(ErrorCode error, String overrideMessage) {
+  public BusinessException(Errorable error, String overrideMessage) {
     super(overrideMessage);
     this.code = error.getCode();
   }

@@ -3,18 +3,16 @@ package bootcamp.demo.bc_yahoo_finance.infra.yahoo;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import bootcamp.demo.bc_yahoo_finance.infra.web.UrlManager;
 
 // get key by cookie string
-@Component
 public class CrumbManager {
-  private static final String CRUMB_URL =
-      "https://query1.finance.yahoo.com/v1/test/getcrumb";
+  // private static final String CRUMB_URL =
+  // "https://query1.finance.yahoo.com/v1/test/getcrumb";
   private RestTemplate restTemplate;
   private CookieManager cookieManager;
-  private String crumb;
 
   public CrumbManager(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
@@ -22,23 +20,26 @@ public class CrumbManager {
   }
 
   public String getCrumb() {
-    String cookie = cookieManager.getCookie();
-    // System.out.println("Cookie: " + cookie);
-
+    // this.cookieStore.clear();
     try {
+      String cookie = this.cookieManager.getCookie();
+      // System.out.println("cookie=" + cookie);
       HttpHeaders headers = new HttpHeaders();
-      headers.add("User-Agent", "Mozilla/5.0");
       headers.add("Cookie", cookie);
-      HttpEntity<String> entity = new HttpEntity<>(headers);
-      ResponseEntity<String> response = this.restTemplate.exchange(CRUMB_URL,
-          HttpMethod.GET, entity, String.class);
-      this.crumb = response.getBody();
-      System.out.println("crumb: " + this.crumb);
-      return this.crumb;
-    } catch (Exception e) {
-      System.out.println("...Cookie...Exception...");
-      System.out.println(e.getMessage());
-      throw new RuntimeException("Get crumb failed...");
+      HttpEntity<HttpHeaders> entity = new HttpEntity<>(headers);
+
+      String crumbUrl = UrlManager.builder() //
+          .domain(YahooFinance.DOMAIN) //
+          .version(YahooFinance.VERSION_CRUMB) //
+          .endpoint(YahooFinance.ENDPOINT_CRUMB) //
+          .build() //
+          .toUriString();
+
+      return restTemplate
+          .exchange(crumbUrl, HttpMethod.GET, entity, String.class) //
+          .getBody();
+    } catch (RestClientException e) {
+      return null;
     }
   }
 }

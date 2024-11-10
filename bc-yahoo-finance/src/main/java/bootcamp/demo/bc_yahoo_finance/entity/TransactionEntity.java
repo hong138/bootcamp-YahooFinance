@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,13 +17,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tstocks_price")
+@Table(name = "tstocks_transaction")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StockPriceEntity implements Serializable {
+public class TransactionEntity implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -39,16 +38,16 @@ public class StockPriceEntity implements Serializable {
   private LocalDateTime marketDateTime;
   @Column(name = "market_price")
   private Double marketPrice;
-  @Column(name = "market_price_change_percent")
-  private Double marketPriceChangePercent;
-  private Double bid;
-  @Column(name = "bid_size")
-  private Long bidSize;
-  private Double ask;
-  @Column(name = "ask_size")
-  private Long askSize;
+  // @Column(name = "market_price_change_percent")
+  // private Double marketPriceChangePercent;
+  // private Double bid;
+  // @Column(name = "bid_size")
+  // private Long bidSize;
+  // private Double ask;
+  // @Column(name = "ask_size")
+  // private Long askSize;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "stock_id")
   private StockEntity stock;
 }
